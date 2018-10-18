@@ -1,7 +1,21 @@
 package application;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
-public class MyButton extends Button {
-
+public abstract class MyButton extends Button {
+	
+protected String value;
+	
+	MyButton(String value) {
+		super(value);
+		this.value=value;
+	}
+	
+	protected abstract void clickButton(Label inputLabel, Label operationSubjectLabel);
+	
+	public void setButton(Label inputLabel, Label operationSubjectLabel) {
+		this.setOnAction( e -> clickButton(inputLabel, operationSubjectLabel));
+	}
+	
 }

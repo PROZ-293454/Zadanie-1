@@ -9,9 +9,10 @@ public class Keyboard {
 
 	//private ValueButton[] valueButtons;
 	//private EqualsButton equalsButton;
-	private Button[] buttons;
+	private MyButton[] buttons;
 	
-	private final String[] VALUES = {"+", "-", "*", "/", "!", "x\u00b2", "\u221a"};
+	private final String[] VALUES = {"+", "-", "*", "/"};
+	private final String[] ONE_ARGUMENT_VALUES = {"!", "x\u00b2", "\u221a"};
 	private static boolean wasOperationPreviously=true;
 
 
@@ -29,21 +30,39 @@ public class Keyboard {
 		
 		//valueButtons = new ValueButton[VALUES.length];
 		//equalsButton = new EqualsButton(inputLabel);
-		buttons = new Button[11+VALUES.length+1];
+		buttons = new MyButton[11+VALUES.length+ONE_ARGUMENT_VALUES.length+1];
 		int i=0;
 		for (i=0; i<10; i++) {
-			buttons[i] = new DigitButton((char)(i+'0'), inputLabel);
+			buttons[i] = new DigitButton(Integer.toString(i));
+			buttons[i].setButton(inputLabel, operationSubjectLabel);
+			
 		}
-		buttons[i++] = new DigitButton('.', inputLabel);
+		buttons[i] = new DigitButton(".");
+		buttons[i++].setButton(inputLabel, operationSubjectLabel);
+		
 		for (String btnValue : VALUES) {
-			buttons[i++] = new OperationButton(btnValue, inputLabel, operationSubjectLabel);
+			buttons[i] = new OperationButton(btnValue);
+			buttons[i++].setButton(inputLabel, operationSubjectLabel);
 		}
+		
+		buttons[i] = new OneArgumentOperationButton("!", "fact");
+		buttons[i++].setButton(inputLabel, operationSubjectLabel);
+		
+		buttons[i] = new OneArgumentOperationButton("x\u00b2", "sqr");
+		buttons[i++].setButton(inputLabel, operationSubjectLabel);
+		
+		buttons[i] = new OneArgumentOperationButton("\u221a", "sqrt");
+		buttons[i++].setButton(inputLabel, operationSubjectLabel);
+		
+		
 		buttons[i] = new EqualsButton(inputLabel, operationSubjectLabel);
+		buttons[i++].setButton(inputLabel, operationSubjectLabel);
 		
 		for (Button btn : buttons) {
 			btn.setPrefSize(60, 60);
 			btn.setStyle("-fx-font: 24 arial;");
 		}
+		buttons[18].setPrefWidth(120);
 		
 	}
 	

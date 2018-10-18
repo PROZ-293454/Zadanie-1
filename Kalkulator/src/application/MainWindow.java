@@ -20,16 +20,15 @@ public class MainWindow extends Application {
 			Keyboard keyboard = new Keyboard(inputLabel, operationSubjectLabel);
 
 			gridPane.setAlignment(Pos.CENTER);
-			gridPane.add(operationSubjectLabel, 0, 0, 11, 1);
-			gridPane.add(inputLabel, 0, 1, 11, 1);
+			gridPane.add(operationSubjectLabel, 0, 0, 4, 1);
+			gridPane.add(inputLabel, 0, 1, 4, 1);
 			gridPane.addRow(2, keyboard.getButtons()[11], keyboard.getButtons()[12], keyboard.getButtons()[13], keyboard.getButtons()[14]);
 			gridPane.addRow(3, keyboard.getButtons()[7], keyboard.getButtons()[8], keyboard.getButtons()[9], keyboard.getButtons()[15]);
 			gridPane.addRow(4, keyboard.getButtons()[4], keyboard.getButtons()[5], keyboard.getButtons()[6], keyboard.getButtons()[16]);
 			gridPane.addRow(5, keyboard.getButtons()[1], keyboard.getButtons()[2], keyboard.getButtons()[3], keyboard.getButtons()[17]);
-			gridPane.addRow(6, keyboard.getButtons()[10], keyboard.getButtons()[0], keyboard.getButtons()[18]);
+			gridPane.addRow(6, keyboard.getButtons()[10], keyboard.getButtons()[0]);
+			gridPane.add(keyboard.getButtons()[18], 2, 6, 2, 1);
 		
-			//gridPane.add(keyboard.getEqualsButton(), 0, 2);
-
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

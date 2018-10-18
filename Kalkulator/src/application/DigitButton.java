@@ -1,24 +1,25 @@
 package application;
 
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class DigitButton extends Button {
+public class DigitButton extends MyButton {
 
-	private char digit;
-
-	DigitButton(char digit, Label inputLabel) {
-		super(Character.toString(digit));
-		this.digit = digit;
-		this.setOnAction(e -> clickButton(inputLabel));
+	DigitButton(String digit) {
+		super(digit);
 	}
 
-	private void clickButton(Label inputLabel) {
+	@Override
+	protected void clickButton(Label inputLabel, Label operationSubjectLabel) {
 		if (Keyboard.WasOperationPreviously()) {
-			if (digit=='.') inputLabel.setText("0"+digit);
-			else inputLabel.setText(Character.toString(digit));
+
+			if (value == ".")
+				inputLabel.setText("0" + value);
+			else
+				inputLabel.setText(value);
+
 			Keyboard.setWasOperationPreviously(false);
-		}
-		else inputLabel.setText(inputLabel.getText() + digit);
+		} else
+			inputLabel.setText(inputLabel.getText() + value);
+
 	}
 }

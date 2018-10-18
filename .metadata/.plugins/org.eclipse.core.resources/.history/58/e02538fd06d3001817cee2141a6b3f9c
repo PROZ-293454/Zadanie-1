@@ -1,0 +1,17 @@
+package application;
+
+import javafx.scene.control.Label;
+
+public class OneArgumentOperationButton extends OperationButton {
+
+	OneArgumentOperationButton(String operation) {
+		super(operation);
+		// TODO Auto-generated constructor stub
+	}
+
+	protected void clickButton(Label inputLabel, Label operationSubjectLabel) {
+		Keyboard.setWasOperationPreviously(true);
+		inputLabel.setText(value + "(" + inputLabel.getText() + ")");
+	}
+
+}
