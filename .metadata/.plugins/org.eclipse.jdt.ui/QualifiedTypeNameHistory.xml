@@ -11,4 +11,5 @@
     <fullyQualifiedTypeName name="javafx.scene.control.Alert.AlertType"/>
     <fullyQualifiedTypeName name="application.model.JshellCalculator"/>
     <fullyQualifiedTypeName name="application.controller.CalculatorController"/>
+    <fullyQualifiedTypeName name="application.model.JShellCalculator"/>
 </qualifiedTypeNameHistroy>

@@ -6,5 +6,6 @@ INDEX VERSION 1.131+C:\Users\asus\Documents\eclipse-workspace\Zadanie-1\.metadat
 2158312854.index
 3794211119.index
 3303744787.index
+2981432312.index
 2776517245.index
 1299478476.index
