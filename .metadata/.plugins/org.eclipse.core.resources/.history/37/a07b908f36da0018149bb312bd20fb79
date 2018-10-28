@@ -1,0 +1,130 @@
+package application;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
+public class CalculatorController {
+
+	@FXML
+	Button dotButton;
+	@FXML
+	Label inputLabel;
+	@FXML
+	Label operationSubjectLabel;
+
+	private boolean wasDot = false;
+	private boolean wasOperationPreviously = true;
+
+	private String getButtonValue(ActionEvent event) {
+		Button clickedButton = (Button) event.getSource();
+		String value = clickedButton.getText();
+		return value;
+	}
+
+	private String functionName(String buttonValue) {
+		switch (buttonValue) {
+		case "!":
+			return "fact";
+		case "x\u00b2":
+			return "sqr";
+		case "\u221a":
+			return "sqrt";
+		case "\u00b1":
+			return "-";
+		}
+		return null;
+	}
+
+	private void setResult() {
+
+		wasOperationPreviously = true;
+		wasDot = false;
+		operationSubjectLabel.setText(operationSubjectLabel.getText() + inputLabel.getText());
+		String value = JshellCalculator.calculate(operationSubjectLabel.getText());
+		if (value != null) {
+			inputLabel.setText(value);
+		} else
+			inputLabel.setText("ERROR");
+
+	}
+
+	@FXML
+	public void clickDigit(ActionEvent event) {
+		String value = getButtonValue(event);
+
+		if (wasOperationPreviously) {
+			inputLabel.setText(value);
+			wasOperationPreviously = false;
+		} else
+			inputLabel.setText(inputLabel.getText() + value);
+
+	}
+
+	@FXML
+	void clickDot(ActionEvent event) {
+		if (wasOperationPreviously) {
+			inputLabel.setText("0.");
+			wasDot = true;
+			wasOperationPreviously = false;
+		} else if (!wasDot) {
+			inputLabel.setText(inputLabel.getText() + ".");
+			wasDot = true;
+			wasOperationPreviously = false;
+
+		}
+
+	}
+
+	@FXML
+	public void clickOperation(ActionEvent event) {
+		String value = getButtonValue(event);
+
+		setResult();
+		if(!wasDot) operationSubjectLabel.setText(operationSubjectLabel.getText() +".0"+ value);
+		else operationSubjectLabel.setText(operationSubjectLabel.getText() + value);
+		
+	}
+
+	@FXML
+	public void clickOneArgumentOperation(ActionEvent event) {
+		String value = getButtonValue(event);
+
+		wasOperationPreviously = true;
+		wasDot = false;
+		inputLabel.setText(functionName(value) + "(" + inputLabel.getText() + ")");
+	}
+
+	@FXML
+	public void clickEquals(ActionEvent event) {
+		setResult();
+		operationSubjectLabel.setText("");
+	}
+
+	@FXML
+	public void clickC(ActionEvent event) {
+		inputLabel.setText("0");
+		operationSubjectLabel.setText("");
+		wasOperationPreviously = true;
+		wasDot = false;
+	}
+
+	@FXML
+	public void clickCE(ActionEvent event) {
+		if (!wasOperationPreviously)
+			inputLabel.setText(inputLabel.getText().substring(0, inputLabel.getText().length() - 1));
+		if (inputLabel.getText().length() == 0) {
+			inputLabel.setText("0");
+			wasOperationPreviously = true;
+			wasDot = false;
+		}
+
+	}
+
+	@FXML
+	public void clickSign(ActionEvent event) {
+
+	}
+
+}

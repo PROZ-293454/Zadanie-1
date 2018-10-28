@@ -1,0 +1,39 @@
+package application;
+
+import java.util.List;
+
+import jdk.jshell.*;
+
+public class JshellCalculator {
+
+	private final JShell jshell = JShell.create();
+
+	JshellCalculator() {
+		try {
+			jshell.eval("private int fact(int x) { if(x==0) return 1; else return x*fact(x-1); }");
+			jshell.eval("private double sqr(double x) { return x*x; }");
+			jshell.eval("private double sqrt(double x) { return Math.sqrt(x); }");
+		} catch (Exception e) {
+
+		}
+	}
+
+	public String calculate(String input) {
+		// JShell jshell = JShell.create();
+
+		try {
+
+			List<SnippetEvent> events = jshell.eval(input);
+			for (SnippetEvent e : events) {
+				if (e.causeSnippet() == null) {
+					if(((String)e.value()).equals("Infinity"));{
+						System.out.printf(e.value());
+						return e.value();}
+				}
+			}
+		} catch (Exception e) {
+
+		}
+		return null;
+	}
+}

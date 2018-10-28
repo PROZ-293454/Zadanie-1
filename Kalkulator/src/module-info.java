@@ -2,13 +2,21 @@
  * 
  */
 /**
- * @author asus
+ * @author Marcin Hanas
  *
  */
-module Kalkulator {
-	requires javafx.graphics;
-	requires javafx.controls;
+module application.view {
+	
+	requires transitive javafx.controls;
+	requires transitive javafx.base;
 	requires jdk.jshell;
-	exports application to javafx.graphics;
-
+	requires javafx.graphics;
+	requires javafx.fxml;
+	exports application.view;
+	exports application.controller to application.view;
+	exports application.model to application.controller;
+	//opens application.view to javafx.fxml;
+	//opens application.model to javafx.fxml;
+	opens application.controller to javafx.fxml;
 }
+

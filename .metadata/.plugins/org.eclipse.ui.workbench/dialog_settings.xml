@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="WorkbenchPreferenceDialogSettings">
-		<item value="593" key="DIALOG_X_ORIGIN"/>
+		<item value="499" key="DIALOG_X_ORIGIN"/>
 		<item value="100" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="EditorSelectionDialog">
+		<item value="true" key="EditorSelectionDialog.STORE_ID_INTERNAL_EXTERNAL"/>
+		<item value=".fxml" key="EditorSelectionDialog.STORE_ID_FILE_EXTENSION"/>
+		<item value="C:\Program Files\Java\SceneBuilder\SceneBuilder.exe" key="EditorSelectionDialog.STORE_ID_DESCR"/>
 	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
 		<item value="-1" key="dialogHeight"/>
@@ -15,5 +20,7 @@
 		</list>
 		<list key="textArray">
 		</list>
+	</section>
+	<section name="NewWizardAction">
 	</section>
 </section>

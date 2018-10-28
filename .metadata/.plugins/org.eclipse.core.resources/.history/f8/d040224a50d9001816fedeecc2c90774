@@ -1,0 +1,31 @@
+package application;
+
+import java.util.List;
+
+import jdk.jshell.*;
+
+public class JshellCalculator {
+
+	//private static final JShell jshell = JShell.create();
+
+	public static String calculate(String input) {
+		try (jshell) { // automatyczne zwalnianie zasobów we frazie try-catch, od JDK9
+			
+			JShell jshell = JShell.create()
+
+			jshell.eval("private int fact(int x) { if(x==0) return 1; else return x*fact(x-1); }");
+
+			jshell.eval("private double sqr(double x) { return x*x; }");
+
+			jshell.eval("private double sqrt(double x) { return Math.sqrt(x) }");
+
+			List<SnippetEvent> events = jshell.eval(input);
+			for (SnippetEvent e : events) {
+				if (e.causeSnippet() == null) {
+					return e.value();
+				}
+			}
+		}
+		return null;
+	}
+}

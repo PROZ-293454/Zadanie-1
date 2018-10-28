@@ -1,0 +1,15 @@
+/**
+ * 
+ */
+/**
+ * @author asus
+ *
+ */
+module application {
+	
+	requires transitive javafx.controls;
+	requires jdk.jshell;
+	requires javafx.base;
+	exports application;
+
+}

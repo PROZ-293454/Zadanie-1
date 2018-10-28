@@ -1,0 +1,18 @@
+/**
+ * 
+ */
+/**
+ * @author asus
+ *
+ */
+module application.view {
+	
+	requires transitive javafx.controls;
+	requires transitive javafx.base;
+	requires jdk.jshell;
+	requires javafx.graphics;
+	requires javafx.fxml;
+	exports application.view;
+	opens application.view to javafx.fxml;
+}
+

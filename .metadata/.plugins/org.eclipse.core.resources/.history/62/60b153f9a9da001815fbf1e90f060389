@@ -1,0 +1,149 @@
+package application.controller;
+
+import application.model.JshellCalculator;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
+public class CalculatorController {
+
+	@FXML
+	Button dotButton;
+	@FXML
+	Label inputLabel;
+	@FXML
+	Label operationSubjectLabel;
+
+	private JshellCalculator jshellCalc = new JshellCalculator();
+	
+	private String getButtonValue(ActionEvent event) {
+		Button clickedButton = (Button) event.getSource();
+		String value = clickedButton.getText();
+		return value;
+	}
+
+	private String functionName(String buttonValue) {
+		switch (buttonValue) {
+		case "!":
+			return "fact";
+		case "x\u00b2":
+			return "sqr";
+		case "\u221a":
+			return "sqrt";
+		case "\u00b1":
+			return "-";
+		}
+		return null;
+	}
+
+	private void setResult() {
+
+		jshellCalc.setOperationBefore(true);
+		jshellCalc.setDotBefore(false);
+		operationSubjectLabel.setText(operationSubjectLabel.getText() + inputLabel.getText());
+		String value = jshellCalc.calculate(operationSubjectLabel.getText());
+		if (value != null) {
+			inputLabel.setText(value);
+		} else {
+			inputLabel.setText("ERROR");
+			showAlert();
+			clickC();
+		}
+
+	}
+
+	private void showAlert() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("ZJEBA£EŒ!");
+		alert.setHeaderText(null);
+		alert.setContentText("Nie umiesz w kalkulator :(");
+
+		alert.showAndWait();
+
+	}
+
+	@FXML
+	public void clickDigit(ActionEvent event) {
+		String value = getButtonValue(event);
+
+		if (jshellCalc.isOperationBefore()) {
+			inputLabel.setText(value);
+			jshellCalc.setOperationBefore(false);
+		} else
+			inputLabel.setText(inputLabel.getText() + value);
+
+	}
+
+	@FXML
+	void clickDot(ActionEvent event) {
+		if (jshellCalc.isOperationBefore()) {
+			inputLabel.setText("0.");
+			jshellCalc.setDotBefore(true);
+			jshellCalc.setOperationBefore(false);
+		} else if (!jshellCalc.isDotBefore()) {
+			inputLabel.setText(inputLabel.getText() + ".");
+			jshellCalc.setDotBefore(true);
+			jshellCalc.setOperationBefore(false);
+		}
+
+	}
+
+	@FXML
+	public void clickOperation(ActionEvent event) {
+		String value = getButtonValue(event);
+		if (jshellCalc.isOperationBefore() && operationSubjectLabel.getText().length()!=0) 
+				operationSubjectLabel.setText(operationSubjectLabel.getText().substring(0, operationSubjectLabel.getText().length()-1) + value);
+		else {
+			setResult();
+			operationSubjectLabel.setText(operationSubjectLabel.getText() + value);
+		}
+
+	}
+
+	@FXML
+	public void clickOneArgumentOperation(ActionEvent event) {
+		String value = getButtonValue(event);
+
+		jshellCalc.operationButtonClicked();
+		
+		inputLabel.setText(functionName(value) + "(" + inputLabel.getText() + ")");
+	}
+
+	@FXML
+	public void clickEquals(ActionEvent event) {
+		setResult();
+		operationSubjectLabel.setText("");
+	}
+
+	@FXML
+	public void clickC() {
+		inputLabel.setText("0");
+		operationSubjectLabel.setText("");
+		jshellCalc.operationButtonClicked();
+	}
+
+	@FXML
+	public void clickCE() {
+		if (!jshellCalc.isOperationBefore())
+			inputLabel.setText(inputLabel.getText().substring(0, inputLabel.getText().length() - 1));
+		if (inputLabel.getText().length() == 0) {
+			inputLabel.setText("0");
+			jshellCalc.operationButtonClicked();
+		}
+
+	}
+
+	@FXML
+	public void clickSign() {
+		jshellCalc.operationButtonClicked();
+		if (!jshellCalc.isNegative(inputLabel.getText()))
+			inputLabel.setText("(-" + inputLabel.getText() + ")");
+		else
+			inputLabel.setText("(-(" + inputLabel.getText() + "))");
+
+	}
+
+}
