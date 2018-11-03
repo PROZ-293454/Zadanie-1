@@ -1,33 +1,71 @@
 package application.model;
 
+import java.io.EOFException;
+import java.util.EmptyStackException;
 import java.util.List;
 
 import jdk.jshell.*;
 
+/**
+ * Metoda bêd¹ca implementacj¹ modelu kalkulatora.
+ * Oblicza ona wynik operacji arytmetycznych w postaci Stringa,
+ * oraz ustawia wartoœci logiczne pól dotBefore i operationBefore,
+ * potrzebnych do odpowiedniego dzia³ania kalkulatora.
+ * @author Marcin Hanas 293454
+ */
 public class JShellCalculator {
 
+	private final JShell jshell = JShell.create();
+	private boolean dotBefore = false;
+	private boolean operationBefore = true;
+	
+	/**
+	 * Metoda sprawdzaj¹ca czy podczas podawania cyfr liczby, zosta³ ju¿ u¿yty znak ".".
+	 * @return wartoœæ zmiennej dotBefore.
+	 */
 	public boolean isDotBefore() {
 		return dotBefore;
 	}
 
+	/**
+	 * Metoda sprawdzaj¹ca czy poprzednio wciœniêty przycisk by³ operacj¹.
+	 * @return wartoœæ zmiennej operationBefore.
+	 */
 	public boolean isOperationBefore() {
 		return operationBefore;
 	}
 	
+	/**
+	 * Metoda wywo³ywana, gdy wciœniêto przycisk operacji.
+	 * Ustawia wartoœci zmiennych dotBefore i operationBefore.
+	 */
 	public void operationButtonClicked() {
 		dotBefore = false;
 		operationBefore = true;
 	}
 	
+	/**
+	 * Metoda wywo³ywana, gdy wciœniêto przycisk ".".
+	 * Ustawia wartoœci zmiennych dotBefore i operationBefore.
+	 */
 	public void dotButtonClicked() {
 		dotBefore = true;
 		operationBefore = false;
 	}
 	
+	/**
+	 * Metoda wywo³ywana, gdy rozpoczêto podawanie nowej liczby
+	 * Ustawia wartoœci zmiennych operationBefore.
+	 */
 	public void firstDigitButtonClicked() {
 		operationBefore = false;
 	}
 	
+	/**
+	 * Metoda s³u¿¹ca do otrzymania nazwy funkcji dla danego tekstu na przycisku operacji.
+	 * @param buttonValue - tekst na przycisku operacji.
+	 * @return nazwa funkcji odpowiadaj¹ca danemu buttonValue.
+	 */
 	public String functionName(String buttonValue) {
 		switch (buttonValue) {
 		case "!":
@@ -42,13 +80,13 @@ public class JShellCalculator {
 		return null;
 	}
 
-	private final JShell jshell = JShell.create();
-	private boolean dotBefore = false;
-	private boolean operationBefore = true;
-
+	/**
+	 * Konstruktor domyœlny klasy.
+	 * Wprowadza do obiektu jshell funkcje odpowiednich operacji.
+	 */
 	public JShellCalculator() {
 		try {
-			jshell.eval("private int fact(int x) { if(x==0) return 1; else return x*fact(x-1); }");
+			jshell.eval("private double fact(double x) {if(x%1 != 0.0) return Double.NaN; else if(x==0) return 1; else return x*fact(x-1); }");
 			jshell.eval("private double sqr(double x) { return x*x; }");
 			jshell.eval("private double sqrt(double x) { return Math.sqrt(x); }");
 		} catch (Exception e) {
@@ -56,24 +94,34 @@ public class JShellCalculator {
 		}
 	}
 	
+	/**
+	 * Metoda sprawdza, czy pierwszym znakiem Stringa jest "-"
+	 * @param input - sprawdzany ³añcuch znaków
+	 * @return true, jeœli pierwszym znakiem jest "-", false w przeciwnym wypadku.
+	 */
 	public boolean isNegative(String input) {
 		return input.substring(0, 1).equals("-");
 	}
 
-	public String calculate(String input) {
+	/**
+	 * Metoda oblicza wynik wyra¿enia arytmetycznego podanego na wejœciu.
+	 * @param input - ³añcuch znaków zawieraj¹cy wyra¿enie arytmetyczne
+	 * @return wynik wyra¿enia arytmetycznego (a w przypadku b³êdu - String null),
+	 * @throws ArithmeticException jeœli wynik wyra¿enie arytmetycznego nie jest liczb¹
+	 * (nie uda³o siê go obliczyæ, jest nieskoñczonoœci¹ ("Infinity") b¹dz nie jest liczb¹ ("NaN").
+	 */
+	public String calculate(String input) throws ArithmeticException {
 
-		try {
-
-			List<SnippetEvent> events = jshell.eval(input);
-			for (SnippetEvent e : events) {
-				if (e.causeSnippet() == null) {
-					if(!e.value().equals("Infinity") && !e.value().equals("NaN"))
-						return e.value();
-				}
+		List<SnippetEvent> events = jshell.eval(input);
+		for (SnippetEvent e : events) {
+			if (e.causeSnippet() == null) {
+				if (e.value() == null || e.value().equals("Infinity") || e.value().equals("NaN"))
+					throw new ArithmeticException();
+				else
+					return e.value();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
+
 		return null;
 	}
 }

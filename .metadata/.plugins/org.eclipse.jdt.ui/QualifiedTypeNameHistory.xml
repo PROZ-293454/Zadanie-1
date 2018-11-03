@@ -12,4 +12,6 @@
     <fullyQualifiedTypeName name="application.model.JshellCalculator"/>
     <fullyQualifiedTypeName name="application.controller.CalculatorController"/>
     <fullyQualifiedTypeName name="application.model.JShellCalculator"/>
+    <fullyQualifiedTypeName name="java.io.EOFException"/>
+    <fullyQualifiedTypeName name="java.util.EmptyStackException"/>
 </qualifiedTypeNameHistroy>
