@@ -3,7 +3,7 @@
  * @author Marcin Hanas
  *
  */
-module application.view {
+module application {
 	
 	requires transitive javafx.controls;
 	requires transitive javafx.base;

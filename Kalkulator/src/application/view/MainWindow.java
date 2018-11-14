@@ -7,18 +7,20 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * Klasa rozszerzaj¹ca klasê Application, reprezentuj¹ca graficzny interfejs programu.
+ * Klasa rozszerzajaca klase Application, reprezentujaca graficzny interfejs
+ * programu.
+ * 
  * @author Marcin Hanas 293454
  */
 public class MainWindow extends Application {
 
 	/**
-	 * Metoda tworz¹ca g³ówne okno programu.
+	 * Metoda tworz¹ca glowne okno programu.
 	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("CalculatorData.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/application/view/CalculatorData.fxml"));
 			Scene scene = new Scene(root, 280, 540);
 			setStage(primaryStage, 280, 540, "Kalkulator", scene);
 			primaryStage.show();
@@ -29,8 +31,9 @@ public class MainWindow extends Application {
 	}
 
 	/**
-	 * Metoda startuj¹ca dzia³anie programu, uruchamiana przy starcie.
-	 * @param args - argumenty wiersza poleceñ.
+	 * Metoda startujaca dzialanie programu, uruchamiana przy starcie.
+	 * 
+	 * @param args - argumenty wiersza polecen.
 	 */
 	public static void main(String[] args) {
 		launch(args);
@@ -38,11 +41,12 @@ public class MainWindow extends Application {
 
 	/**
 	 * Metoda ustawiaj¹ca parametry okna programu.
-	 * @param stage - zmienna reprezentuj¹ca okno programu
-	 * @param minWidth - minimalna szerokoœæ okna
-	 * @param minHeight - minimalna wysokoœæ okna
-	 * @param title - tytu³ okna
-	 * @param scene - zawartoœæ wewn¹trz okna programu.
+	 * 
+	 * @param stage     - zmienna reprezentujaca okno programu
+	 * @param minWidth  - minimalna szerokosc okna
+	 * @param minHeight - minimalna wysokosc okna
+	 * @param title     - tytul okna
+	 * @param scene     - zawartosc wewnatrz okna programu.
 	 */
 	private void setStage(Stage stage, int minWidth, int minHeight, String title, Scene scene) {
 		stage.setMinWidth(280);

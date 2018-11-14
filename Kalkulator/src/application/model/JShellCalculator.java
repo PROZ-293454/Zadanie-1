@@ -1,16 +1,15 @@
 package application.model;
 
-import java.io.EOFException;
-import java.util.EmptyStackException;
 import java.util.List;
 
 import jdk.jshell.*;
 
 /**
- * Metoda bêd¹ca implementacj¹ modelu kalkulatora.
- * Oblicza ona wynik operacji arytmetycznych w postaci Stringa,
- * oraz ustawia wartoœci logiczne pól dotBefore i operationBefore,
- * potrzebnych do odpowiedniego dzia³ania kalkulatora.
+ * Metoda bedaca implementacja modelu kalkulatora. Oblicza ona wynik operacji
+ * arytmetycznych w postaci Stringa, oraz ustawia wartosci logiczne pol
+ * dotBefore i operationBefore, potrzebnych do odpowiedniego dzialania
+ * kalkulatora.
+ * 
  * @author Marcin Hanas 293454
  */
 public class JShellCalculator {
@@ -18,53 +17,58 @@ public class JShellCalculator {
 	private final JShell jshell = JShell.create();
 	private boolean dotBefore = false;
 	private boolean operationBefore = true;
-	
+
 	/**
-	 * Metoda sprawdzaj¹ca czy podczas podawania cyfr liczby, zosta³ ju¿ u¿yty znak ".".
-	 * @return wartoœæ zmiennej dotBefore.
+	 * Metoda sprawdzajaca czy podczas podawania cyfr liczby, zostal juz uzyty znak
+	 * ".".
+	 * 
+	 * @return wartosc zmiennej dotBefore.
 	 */
 	public boolean isDotBefore() {
 		return dotBefore;
 	}
 
 	/**
-	 * Metoda sprawdzaj¹ca czy poprzednio wciœniêty przycisk by³ operacj¹.
-	 * @return wartoœæ zmiennej operationBefore.
+	 * Metoda sprawdzajaca czy poprzednio wcisniety przycisk byl operacja.
+	 * 
+	 * @return wartosc zmiennej operationBefore.
 	 */
 	public boolean isOperationBefore() {
 		return operationBefore;
 	}
-	
+
 	/**
-	 * Metoda wywo³ywana, gdy wciœniêto przycisk operacji.
-	 * Ustawia wartoœci zmiennych dotBefore i operationBefore.
+	 * Metoda wywolywana, gdy wcisnieto przycisk operacji. Ustawia wartosci
+	 * zmiennych dotBefore i operationBefore.
 	 */
 	public void operationButtonClicked() {
 		dotBefore = false;
 		operationBefore = true;
 	}
-	
+
 	/**
-	 * Metoda wywo³ywana, gdy wciœniêto przycisk ".".
-	 * Ustawia wartoœci zmiennych dotBefore i operationBefore.
+	 * Metoda wywolywana, gdy wcisnieto przycisk ".". Ustawia wartosci zmiennych
+	 * dotBefore i operationBefore.
 	 */
 	public void dotButtonClicked() {
 		dotBefore = true;
 		operationBefore = false;
 	}
-	
+
 	/**
-	 * Metoda wywo³ywana, gdy rozpoczêto podawanie nowej liczby
-	 * Ustawia wartoœci zmiennych operationBefore.
+	 * Metoda wywolywana, gdy rozpoczeto podawanie nowej liczby Ustawia wartosci
+	 * zmiennych operationBefore.
 	 */
 	public void firstDigitButtonClicked() {
 		operationBefore = false;
 	}
-	
+
 	/**
-	 * Metoda s³u¿¹ca do otrzymania nazwy funkcji dla danego tekstu na przycisku operacji.
+	 * Metoda sluzaca do otrzymania nazwy funkcji dla danego tekstu na przycisku
+	 * operacji.
+	 * 
 	 * @param buttonValue - tekst na przycisku operacji.
-	 * @return nazwa funkcji odpowiadaj¹ca danemu buttonValue.
+	 * @return nazwa funkcji odpowiadajaca danemu buttonValue.
 	 */
 	public String functionName(String buttonValue) {
 		switch (buttonValue) {
@@ -81,34 +85,39 @@ public class JShellCalculator {
 	}
 
 	/**
-	 * Konstruktor domyœlny klasy.
-	 * Wprowadza do obiektu jshell funkcje odpowiednich operacji.
+	 * Konstruktor domyslny klasy. Wprowadza do obiektu jshell funkcje odpowiednich
+	 * operacji.
 	 */
 	public JShellCalculator() {
 		try {
-			jshell.eval("private double fact(double x) {if(x%1 != 0.0) return Double.NaN; else if(x==0) return 1; else return x*fact(x-1); }");
+			jshell.eval(
+					"private double fact(double x) {if(x%1 != 0.0) return Double.NaN; else if(x==0) return 1; else return x*fact(x-1); }");
 			jshell.eval("private double sqr(double x) { return x*x; }");
 			jshell.eval("private double sqrt(double x) { return Math.sqrt(x); }");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Metoda sprawdza, czy pierwszym znakiem Stringa jest "-"
-	 * @param input - sprawdzany ³añcuch znaków
-	 * @return true, jeœli pierwszym znakiem jest "-", false w przeciwnym wypadku.
+	 * 
+	 * @param input - sprawdzany lancuch znakow
+	 * @return true, jesli pierwszym znakiem jest "-", false w przeciwnym wypadku.
 	 */
 	public boolean isNegative(String input) {
 		return input.substring(0, 1).equals("-");
 	}
 
 	/**
-	 * Metoda oblicza wynik wyra¿enia arytmetycznego podanego na wejœciu.
-	 * @param input - ³añcuch znaków zawieraj¹cy wyra¿enie arytmetyczne
-	 * @return wynik wyra¿enia arytmetycznego (a w przypadku b³êdu - String null),
-	 * @throws ArithmeticException jeœli wynik wyra¿enie arytmetycznego nie jest liczb¹
-	 * (nie uda³o siê go obliczyæ, jest nieskoñczonoœci¹ ("Infinity") b¹dz nie jest liczb¹ ("NaN").
+	 * Metoda oblicza wynik wyrazenia arytmetycznego podanego na wejsciu.
+	 * 
+	 * @param input - lancuch znakow zawierajacy wyrazenie arytmetyczne
+	 * @return wynik wyrazenia arytmetycznego (a w przypadku bledu - String null),
+	 * @throws ArithmeticException jesli wynik wyrazenie arytmetycznego nie jest
+	 *                             liczba (nie udalo sie go obliczyc, jest
+	 *                             nieskonczonoscia ("Infinity") badz nie jest
+	 *                             liczba ("NaN").
 	 */
 	public String calculate(String input) throws ArithmeticException {
 

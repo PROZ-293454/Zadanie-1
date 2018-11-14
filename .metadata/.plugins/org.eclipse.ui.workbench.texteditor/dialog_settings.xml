@@ -2,39 +2,44 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="isDot" key="selection"/>
+		<item value="JShellCalculator" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="calc"/>
+			<item value="ń"/>
+			<item value="ć"/>
+			<item value="ź"/>
+			<item value="ż"/>
+			<item value="ł"/>
+			<item value="ś"/>
+			<item value="ą"/>
+			<item value="ó"/>
+			<item value="ę"/>
 			<item value="isdot"/>
 			<item value="calculate"/>
 			<item value="jshellCalc"/>
 			<item value="functio"/>
 			<item value="setResult"/>
-			<item value="setresult"/>
-			<item value="jshellCalc.setDotBefore(true)"/>
-			<item value="jshellCalc.setDotBefore(true);"/>
-			<item value="dotBefore"/>
-			<item value="operationBefore"/>
-			<item value="dotBefore = true"/>
-			<item value="dotBefore = false"/>
-			<item value="operationBefore = false"/>
-			<item value="operationBefore = true"/>
-			<item value="!operationBefore"/>
 		</list>
 		<list key="replacehistory">
+			<item value="JShellCalculator"/>
+			<item value="n"/>
+			<item value="c"/>
+			<item value="z"/>
+			<item value="l"/>
+			<item value="s"/>
+			<item value="a"/>
+			<item value="o"/>
+			<item value="e"/>
 			<item value="calc"/>
 			<item value="jshellCalc.isDotBefore()"/>
 			<item value="jshellCalc.isOperationBefore()"/>
 			<item value="jshellCalc.setDotBefore(true)"/>
 			<item value="jshellCalc.setDotBefore(false)"/>
 			<item value="jshellCalc.setOperationBefore(false)"/>
-			<item value="jshellCalc.setOperationBefore(true)"/>
-			<item value="!jshellCalc.isOperationBefore()"/>
-			<item value="dotBefore"/>
-			<item value="operationBefore"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

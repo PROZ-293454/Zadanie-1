@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="JavaSE-11" key="org.eclipse.jdt.ui.last.selected.execution.enviroment"/>
 	<item value="C:\Program Files\Java\javafx-sdk-11\lib" key="org.eclipse.jdt.ui.lastextjar"/>
+	<item value="1" key="org.eclipse.jdt.ui.last.selected.jre.kind2"/>
+	<item value="jdk-11.0.1" key="org.eclipse.jdt.ui.last.selected.project.jre"/>
 	<section name="NewClassWizardPage">
 		<item value="false" key="create_constructor"/>
 		<item value="true" key="create_unimplemented"/>
@@ -31,7 +34,7 @@
 		<item value="9" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="javadoc">
-		<item value="public" key="access"/>
+		<item value="private" key="access"/>
 		<item value="false" key="noindex"/>
 		<item value="C:\Users\asus\Documents\eclipse-workspace\Zadanie-1\Kalkulator\javadoc.xml" key="antpath"/>
 		<item value="false" key="nodeprecatedlist"/>
@@ -40,7 +43,7 @@
 		<item value="false" key="nodeprecated"/>
 		<item value="false" key="nonavbar"/>
 		<item value="" key="docletpath"/>
-		<item value="C:\Users\asus\Documents\eclipse-workspace\Zadanie-1\Kalkulator\bin\javadoc.exe;C:\Users\asus\Documents\eclipse-workspace\Zadanie-1\Kalkulator\javadoc.exe;C:\Program Files\Java\jdk-11.0.1\bin\javadoc.exe;C:\Program Files\Java\javafx-sdk-11\bin\javadoc.exe" key="javadoc_command_history"/>
+		<item value="C:\Program Files\Java\jdk-11.0.1\bin\javadoc.exe;C:\Users\asus\Documents\eclipse-workspace\Zadanie-1\Kalkulator\bin\javadoc.exe;C:\Users\asus\Documents\eclipse-workspace\Zadanie-1\Kalkulator\javadoc.exe;C:\Program Files\Java\javafx-sdk-11\bin\javadoc.exe" key="javadoc_command_history"/>
 		<item value="10" key="source"/>
 		<item value="true" key="version"/>
 		<item value="" key="docletname"/>
@@ -72,6 +75,12 @@
 	</section>
 	<section name="ClasspathContainerSelectionPage">
 		<item value="2" key="index"/>
+	</section>
+	<section name="JarImportWizard">
+		<item value="false" key="org.eclipse.ltk.ui.refactoring.sortRefactorings"/>
+		<list key="org.eclipse.jdt.ui.refactoring.jarHistory">
+			<item value="C:\Program Files\Java\jdk-11.0.1\lib\src.zip"/>
+		</list>
 	</section>
 	<section name="quick_assist_proposal_size">
 	</section>

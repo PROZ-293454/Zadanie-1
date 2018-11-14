@@ -9,7 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 /**
- * Klasa bêd¹ca kontrolerem dla widoku zapisanego w pliku CalculatorData.fxml
+ * Klasa bedaca kontrolerem dla widoku zapisanego w pliku CalculatorData.fxml
+ * 
  * @author Marcin Hanas 293454
  */
 public class CalculatorController {
@@ -22,9 +23,10 @@ public class CalculatorController {
 	private JShellCalculator calc = new JShellCalculator();
 
 	/**
-	 * Metoda s³u¿¹ca do pozyskiwania tekstu naciœniêtego przycisku
-	 * @param event - zmienna zawieraj¹ca informacje o naciœniêtym przycisku
-	 * @return tekst, który wyœwietla siê na naciœniêtym przycisku
+	 * Metoda sluzaca do pozyskiwania tekstu nacisnietego przycisku
+	 * 
+	 * @param event - zmienna zawierajaca informacje o nacisnietym przycisku
+	 * @return tekst, ktory wyswietla sie na nacisnietym przycisku
 	 */
 	private String getButtonValue(ActionEvent event) {
 		Button clickedButton = (Button) event.getTarget();
@@ -33,11 +35,14 @@ public class CalculatorController {
 	}
 
 	/**
-	 * Metoda, która oblicza rozwi¹zanie wyra¿enia arytm. zawarte w operationSubjectLabel,
-	 * i ustawia jego wynik w inputLabel, b¹dz gdy nie uda³o siê obliczyæ rozwi¹zania, 
-	 * wywo³uje komunikat o b³êdzie
-	 * @throws ArithmeticException - metoda zwraca wyj¹tek, gdy z³apa³a wyj¹tek ArithmeticException
-	 * rzucony przez metodê calculate klasy JShellCalculator - nie uda³o siê obliczyæ rozwi¹zania
+	 * Metoda, ktora oblicza rozwiazanie wyrazenia arytm. zawarte w
+	 * operationSubjectLabel, i ustawia jego wynik w inputLabel, badz gdy nie udalo
+	 * sie obliczyc rozwiazania, wywoluje komunikat o bledzie
+	 * 
+	 * @throws ArithmeticException - metoda zwraca wyjatek, gdy zlapala wyjatek
+	 *                             ArithmeticException rzucony przez metode
+	 *                             calculate klasy JShellCalculator - nie udalo sie
+	 *                             obliczyc rozwiazania
 	 */
 	private void setResult() throws ArithmeticException {
 
@@ -45,22 +50,23 @@ public class CalculatorController {
 		try {
 			String value = calc.calculate(operationSubjectLabel.getText());
 			inputLabel.setText(value);
-			
+
 		} catch (ArithmeticException exception) {
 			inputLabel.setText("ERROR");
-			showAlert("Wykonujesz dzia³ania niedozwolone");
+			showAlert("Wykonujesz dzialania niedozwolone");
 			clickC();
 			throw exception;
 		}
 	}
 
 	/**
-	 * Metoda wyœwietla komunikat o b³êdzie
-	 * @param contentText - tekst wyœwietlany w komunikacie, treœæ b³êdu
+	 * Metoda wyswietla komunikat o bledzie
+	 * 
+	 * @param contentText - tekst wyswietlany w komunikacie, tresc bledu
 	 */
 	private void showAlert(String contentText) {
 		Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("B³¹d dzia³ania kalkulatora");
+		alert.setTitle("Blad dzialania kalkulatora");
 		alert.setHeaderText(null);
 		alert.setContentText(contentText);
 
@@ -69,9 +75,10 @@ public class CalculatorController {
 	}
 
 	/**
-	 * Metoda wywo³ywana po wciœniêciu przycisku cyfry.
-	 * Dopisuje cyfrê do inputLabel.
-	 * @param event - obiekt zawieraj¹cy informacjê, który przycisk zosta³ wciœniêty
+	 * Metoda wywolywana po wcisnieciu przycisku cyfry. Dopisuje cyfre do
+	 * inputLabel.
+	 * 
+	 * @param event - obiekt zawierajacy informacje, ktory przycisk zostal wcisniety
 	 */
 	@FXML
 	public void clickDigit(ActionEvent event) {
@@ -79,15 +86,16 @@ public class CalculatorController {
 
 		if (calc.isOperationBefore()) {
 			inputLabel.setText(value);
-			if (!value.equals("0")) calc.firstDigitButtonClicked();
+			if (!value.equals("0"))
+				calc.firstDigitButtonClicked();
 		} else
 			inputLabel.setText(inputLabel.getText() + value);
 
 	}
 
 	/**
-	 * Metoda wywo³ywana po wciœniêciu przycisku kropki.
-	 * Dopisuje kropkê (b¹dz "0.") do inputLabel.
+	 * Metoda wywolywana po wcisnieciu przycisku kropki. Dopisuje kropke (badz "0.")
+	 * do inputLabel.
 	 */
 	@FXML
 	void clickDot() {
@@ -102,9 +110,11 @@ public class CalculatorController {
 	}
 
 	/**
-	 * Metoda wywo³ywana po wciœniêciu przycisku operacji: +, -, * lub /.
-	 * oblicza wynik operacji z operationSubjectLabel oraz dopisuje znak operacji do operationSubjectLabel.
-	 * @param event - obiekt zawieraj¹cy informacjê, który przycisk zosta³ wciœniêty
+	 * Metoda wywolywana po wcisnieciu przycisku operacji: +, -, * lub /. oblicza
+	 * wynik operacji z operationSubjectLabel oraz dopisuje znak operacji do
+	 * operationSubjectLabel.
+	 * 
+	 * @param event - obiekt zawierajacy informacje, ktory przycisk zostal wcisniety
 	 */
 	@FXML
 	public void clickOperation(ActionEvent event) {
@@ -126,9 +136,11 @@ public class CalculatorController {
 	}
 
 	/**
-	 * Metoda wywo³ywana po wciœniêciu przycisku operacji jednoargumentowej: silni, kwadratu lub pierwiastka kw.
-	 * Dopisuje nazwê funkcji symbolizuj¹c¹ operacjê do inputLabel.
-	 * @param event - obiekt zawieraj¹cy informacjê, który przycisk zosta³ wciœniêty
+	 * Metoda wywolywana po wcisnieciu przycisku operacji jednoargumentowej: silni,
+	 * kwadratu lub pierwiastka kw. Dopisuje nazwe funkcji symbolizujaca operacje do
+	 * inputLabel.
+	 * 
+	 * @param event - obiekt zawierajacy informacje, ktory przycisk zostal wcisniety
 	 */
 	@FXML
 	public void clickOneArgumentOperation(ActionEvent event) {
@@ -139,8 +151,8 @@ public class CalculatorController {
 	}
 
 	/**
-	 * Metoda wywo³ywana po wciœniêciu przycisku operacji: =.
-	 * Oblicza wynik operacji z operationSubjectLabel i przepisuje go do inputLabel.
+	 * Metoda wywolywana po wcisnieciu przycisku operacji: =. Oblicza wynik operacji
+	 * z operationSubjectLabel i przepisuje go do inputLabel.
 	 */
 	@FXML
 	public void clickEquals() {
@@ -150,8 +162,8 @@ public class CalculatorController {
 	}
 
 	/**
-	 * Metoda wywo³ywana po wciœniêciu przycisku operacji: C.
-	 * Usuwa tekst z obu pól operationSubjectLabel i inputLabel.
+	 * Metoda wywolywana po wcisnieciu przycisku operacji: C. Usuwa tekst z obu pol
+	 * operationSubjectLabel i inputLabel.
 	 */
 	@FXML
 	public void clickC() {
@@ -161,8 +173,8 @@ public class CalculatorController {
 	}
 
 	/**
-	 * Metoda wywo³ywana po wciœniêciu przycisku operacji: CE.
-	 * Usuwa ostatni znak z pola inputLabel.
+	 * Metoda wywolywana po wcisnieciu przycisku operacji: CE. Usuwa ostatni znak z
+	 * pola inputLabel.
 	 */
 	@FXML
 	public void clickCE() {
@@ -176,8 +188,8 @@ public class CalculatorController {
 	}
 
 	/**
-	 * Metoda wywo³ywana po wciœniêciu przycisku operacji: +/-
-	 * Ustawia znak - przed liczb¹ w polu inputLabel.
+	 * Metoda wywolywana po wcisnieciu przycisku operacji: +/- Ustawia znak - przed
+	 * liczba w polu inputLabel.
 	 */
 	@FXML
 	public void clickSign() {
