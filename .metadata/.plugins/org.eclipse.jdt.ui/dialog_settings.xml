@@ -4,6 +4,12 @@
 	<item value="C:\Program Files\Java\javafx-sdk-11\lib" key="org.eclipse.jdt.ui.lastextjar"/>
 	<item value="1" key="org.eclipse.jdt.ui.last.selected.jre.kind2"/>
 	<item value="jdk-11.0.1" key="org.eclipse.jdt.ui.last.selected.project.jre"/>
+	<section name="org.eclipse.ltk.ui.refactoring.settings">
+		<item value="false" key="renameSubpackages"/>
+		<item value="false" key="updateQualifiedNames"/>
+		<item value="*" key="patterns"/>
+		<item value="false" key="updateTextualMatches"/>
+	</section>
 	<section name="NewClassWizardPage">
 		<item value="false" key="create_constructor"/>
 		<item value="true" key="create_unimplemented"/>
@@ -33,6 +39,10 @@
 		<item value="630" key="DIALOG_X_ORIGIN"/>
 		<item value="9" key="DIALOG_Y_ORIGIN"/>
 	</section>
+	<section name="RefactoringWizard.preview">
+		<item value="600" key="width"/>
+		<item value="400" key="height"/>
+	</section>
 	<section name="javadoc">
 		<item value="private" key="access"/>
 		<item value="false" key="noindex"/>
@@ -50,12 +60,17 @@
 		<item value="true" key="splitindex"/>
 		<item value="true" key="fromStandard"/>
 		<item value="false" key="notree"/>
-		<item value="C:\Users\asus\Documents\eclipse-workspace\Zadanie-1\Kalkulator\doc" key="destdir"/>
+		<item value="C:\Users\asus\Documents\eclipse-workspace\Zadanie-1\docs" key="destdir"/>
 		<item value="false" key="openinbrowser"/>
 		<section name="projects">
 			<section name="Kalkulator">
 				<item value="C:\Users\asus\Documents\eclipse-workspace\Zadanie-1\Kalkulator\javadoc.xml" key="antpath"/>
-				<item value="C:\Users\asus\Documents\eclipse-workspace\Zadanie-1\Kalkulator\doc" key="destdir"/>
+				<item value="C:\Users\asus\Documents\eclipse-workspace\Zadanie-1\docs" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="RemoteSystemsTempFiles">
+				<item value="C:\Users\asus\Documents\eclipse-workspace\Zadanie-1\RemoteSystemsTempFiles\javadoc.xml" key="antpath"/>
+				<item value="C:\Users\asus\Documents\eclipse-workspace\Zadanie-1\RemoteSystemsTempFiles\doc" key="destdir"/>
 				<item value="" key="href"/>
 			</section>
 		</section>
@@ -85,7 +100,7 @@
 	<section name="quick_assist_proposal_size">
 	</section>
 	<section name="BuildPathsPropertyPage">
-		<item value="0" key="pageIndex"/>
+		<item value="3" key="pageIndex"/>
 	</section>
 	<section name="JavadocWizardDialog">
 		<item value="818" key="DIALOG_WIDTH"/>

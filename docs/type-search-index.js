@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"application.controller","l":"CalculatorController"},{"p":"application.model","l":"JShellCalculator"},{"p":"application.view","l":"MainWindow"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"calculator.controller","l":"CalculatorController"},{"p":"calculator.model","l":"JShellCalculator"},{"p":"calculator.view","l":"MainWindow"}]
